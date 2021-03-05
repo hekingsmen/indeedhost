@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Lyreco Project Status</title>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/jquery.selectBoxIt.css" />
+</head>
+<body>
+<!--logo-section-->
+<div class="top_header define_float">
+	<div class="container">
+		<div class="top_header_main define_float">
+			<div class="top_header_left col-md-6 col-sm-6 col-xs-6">
+				<div class="logo_section define_float">
+					<a href="javascript:void(0)"><img src="images/logo.svg" alt="logo"></a>
+					<h2>Project Dashboard</h2>
+				</div>
+			</div>
+			<div class="top_header_right col-md-6 col-sm-6 col-xs-6">
+				<div class="top_header_right_inner">
+				<ul>
+					<li><a href="javascript:void(0);">Hello, Max Mustermann<img src="images/client.png" alt="client"></a></li>
+					<li><a href="javascript:void(0);">Dashboard</a></li>
+					<li><a href="javascript:void(0);">Log out</a></li>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End-->
+<!--Nav-SEction-->
+<div class="header_nav define_float">
+	<div class="container">
+		<div class="header_nav_main define_float">
+			<a href="javascript:void(0);">Admin </a>
+			<span>/</span>
+			<a href="javascript:void(0);">Users</a>
+		</div>
+	</div>
+</div>
+<!--End-->
+<!--Table-->
+<div class="lyerco_table define_float">
+	<div class="container">
+		<div class="lyerco_table_main define_float">
+			<div class="lyerco_left_table col-md-3">
+				<div class="lyerco_left_table_inner define_float">
+					<ul>
+						<h6>Admin Panel</h6>
+						<li class="user_active"><a href="javascript:void(0);">Business Units</a></li>
+						<li><a href="javascript:void(0);">Roles</a></li>
+						<li><a href="javascript:void(0);">Users</a></li>
+						<li><a href="javascript:void(0);">Projects</a></li>
+						<h6>Project Panel</h6>
+						<li><a href="javascript:void(0);">My Projects</a></li>
+						<h6>Reporting Panel</h6>
+						<li><a href="javascript:void(0);">Status Updates</a></li>
+						<h6>User Panel</h6>
+						<li><a href="javascript:void(0);">My Profile</a></li>
+					</ul> 
+				</div>
+			</div>
+			<div class="lyerco_right_table business-unit col-md-9">
+				<div class="table_heading_text define_float">
+					<h2>Project A Status</h2>
+				</div>
+				<div class="project-header-main">
+					<div class="project-heading-list col-md-6">
+						<ul>
+						<li><h6>Project Title:</h6><span>Project XYZ</span></li>
+						<li><h6>Department:</h6><span>Department XYZ</span></li>
+						<li><h6>Project Manager:</h6><span>Username</span></li>			
+						</ul>
+					</div>					
+				</div>
+				<div class="project-details-main project-status">
+					<h2>Project Upadate</h2>
+					<div class="project-textarea">
+						<p>What is the current overall status of the project?</p>
+						<textarea name="comment" class="disabled" form="usrform">What is project about? Why do we start the project? What outcome do we expect?</textarea>
+					</div>
+					<div class="project-textarea percent-section">
+						<p>What is the overall percentage of completion?</p>
+						<input type="int" class="percent-field percentage-choose" form="usrform" value="70"><span>%</span>
+					</div>
+					<div class="project-textarea percent-section">
+						<p>What is the real start / realistic end of the project?</p>
+						<input type="text" class="percent-field date-picker-form" form="usrform" onfocus="(this.type='date')" id="date"  placeholder="Start dd/mm/yyyy">
+						<input type="int" class="percent-field date-picker-form" form="usrform" value="End dd/mm/yy" placeholder>
+					</div>																	
+				</div>
+				<div class="project-details-main project-members status-main">
+					<h2>Time</h2>
+					<div class="project-textarea percent-section">
+						<p>How is the current time planning of the project?</p>
+						<div class="select-admin">
+							<select id="admin">
+							  <option value="select-role">Good </option>														  
+							</select>
+						</div>
+						<div class="project-textarea">
+							<p>Why? What is needed to get back on track?</p>
+							<textarea name="comment" class="disabled" form="usrform">What is project about? Why do we start the project? What outcome do we expect?</textarea>
+						</div>						
+					</div>	
+				</div>
+				<div class="project-details-main project-members status-main">
+					<h2>Quality</h2>
+					<div class="project-textarea percent-section">
+					  <div class="quality-text">
+							<p>How is the current quality of the project?</p>
+							<div class="select-admin">
+								<select id="admin">
+								  <option value="select-role">Good </option>														  
+								</select>
+							</div>
+						</div>
+						<div class="project-textarea">
+							<p>Why? What is needed to get back on track?</p>
+							<textarea name="comment" class="disabled" form="usrform">What is project about? Why do we start the project? What outcome do we expect?</textarea>
+						</div>						
+					</div>	
+				</div>
+				<div class="project-details-main project-members status-main">
+					<h2>Cost</h2>
+					<div class="project-textarea percent-section">
+						<p>How is the current quality of the project?</p>
+						<div class="select-admin">
+							<select id="admin">
+							  <option value="select-role">Good </option>														  
+							</select>
+						</div>
+						<div class="project-textarea">
+							<p>Why? What is needed to get back on track?</p>
+							<textarea name="comment" class="disabled" form="usrform">What is project about? Why do we start the project? What outcome do we expect?</textarea>
+						</div>						
+					</div>	
+				</div>								
+				<!--Button-->
+				<button class="save-deatils">SAVE</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.selectBoxIt.min.js"></script>
+<script>
+jQuery(document).ready(function() {	 
+	jQuery('.select-admin select').selectBoxIt({ 'numSearchCharacters': 1 });
+});
+</script>
+<script>
+var input = document.getElementById( 'file-upload' );
+var infoArea = document.getElementById( 'file-upload-filename' );
+
+input.addEventListener( 'change', showFileName );
+
+function showFileName( event ) {
+  
+  // the change event gives us the input it occurred in 
+  var input = event.srcElement;
+  
+  // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+  var fileName = input.files[0].name;
+  
+  // use fileName however fits your app best, i.e. add it into a div
+  infoArea.textContent = 'File name: ' + fileName;
+}
+</script>
+</body>
+</html>
+
