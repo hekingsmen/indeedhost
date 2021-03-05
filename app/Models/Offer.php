@@ -131,20 +131,23 @@ class Offer extends Model
 
         foreach(Cart::content() as $index => $content){
 
-            if(!empty($specificItem) && count($specificItem)>0){
-                if( in_array($content->id,$specificItem) && !in_array($content->id,$restrictedItem) ){
-
-                    $response = $this->setDiscountByType($offer,$content);
-                }
-
-            }else{
-                    $response = $this->setDiscountByType($offer,$content);
-            }
+            $response = $this->setDiscountByType($offer,$content);
+//            if(!empty($specificItem) && count($specificItem)>0){
+//                if( in_array($content->id,$specificItem) && !in_array($content->id,$restrictedItem) ){
+//
+//                    $response = $this->setDiscountByType($offer,$content);
+//                }
+//
+//            }else{
+//                    $response = $this->setDiscountByType($offer,$content);
+//            }
         }
 
         return $response;
 
     }
+
+
 
     public function setDiscountByType($offer=array(),$package=array(),$options=array()){
 
@@ -161,8 +164,8 @@ class Offer extends Model
             }
         }
 
-        if( count($container) == 0 ){
-
+        if( count($container) == 0 && count($container) < 1 ){
+//            echo "will add"; die;
             $childRow = Cart::add(['id' => $package->id,
                 'name' => "child_entry",
                 'qty' => 1, 'price' =>0,
@@ -178,18 +181,18 @@ class Offer extends Model
                         'type'=>$offer->type
                     ]]);
 
-
             $options = Cart::get($package->rowId);
+
             $data = [
-                'duration' => $options->options['duration'],
+                'plan_duration' => $options->options['plan_duration'],
                 'discount' => $options->options['discount'],
                 'type' =>$options->options['type'],
-                'actualPrice' => $options->options['actualPrice'],
+                'price' => $options->options['price'],
                 'childRow' => $childRow->rowId,
                 'parent_rowId' => null,
             ];
-            Cart::update($package->rowId, ['options'  => $data ]);
 
+            Cart::update($package->rowId, ['options'  => $data ]);
 
             if( $offer['type'] == 'discount' && $offer['discount'] != 0 ){
 
@@ -211,7 +214,8 @@ class Offer extends Model
             $response['reload'] = true;
 
         }else{
-
+//          echo "will not add"; die;
+            $container = '';
             $response['msg']     = "Code can not be applly twice.";
             $response['success'] = true;
 

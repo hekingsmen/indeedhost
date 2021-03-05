@@ -47,6 +47,7 @@
 				                  <tr class="main-hading">
 				                     <th>PLAN NAME</th>
 				                     <th class="text-center">PRICE (&#8377;)</th>
+									  <th class="text-center">DURATION (Months)</th>
 				                     <th class="text-center">TAX (%)</th>
 				                     <th class="text-center">DISCOUNT </th>
 				                     <th class="text-center">TOTAL (&#8377;)</th>
@@ -65,6 +66,9 @@
 						                        <p class="product-name"> <a href="javascript:void(0);" target="_blank">{{$item->name}}</a> </p>
 						                     </td>
 						                     <td class="price" style="text-align: center;" data-title="Price"><span>{{$item->price}}</span></td>
+											<td class="price" style="text-align: center;" data-title="Price"><span>
+													{{$item->options['plan_duration']}}
+												</span></td>
 						                     <td class="price" style="text-align: center;" data-title="Price"><span>{{$item->taxRate}}</span></td>
 						                     <td class="price" style="text-align: center;" data-title="Price">
 

@@ -15,21 +15,13 @@ use Razorpay\Api\Api;
 
 class CartController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
+
     public function __construct()
     {
         //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
 
     public function index(Request $request){
 //                Cart::destroy();
@@ -37,12 +29,15 @@ class CartController extends Controller
         $input = $request->all();
 
         if(!empty($input['offerCode'])){
+
             Cart::setGlobalDiscount(50);
         }
 
         return view('cart');
 
     }
+
+
     public function clearCart(){
         $countCart = array();
 
@@ -54,18 +49,20 @@ class CartController extends Controller
             $this->cartDestroyed();
         }
     }
+
+
     public function applyCode(Request $request){
 
         $input = $request->all();
+
         if(!empty($input['code'])){
 
             $response = (new Offer)->checkForValidCode($input['code']);
-
         }
 
         return $response;
-
     }
+
 
     public function checkForAvailability($arr = array()){
 
@@ -76,7 +73,9 @@ class CartController extends Controller
         return $arr;
     }
 
+
     public function removeIfAvailable($id=null){
+
         $data = \Cart::content();
         foreach ($data as $key => $value) {
             if($value->id == $id ){
@@ -84,6 +83,7 @@ class CartController extends Controller
             }
         }
     }
+
 
     public function addcart(int $id, Request $request) {
 
@@ -100,20 +100,23 @@ class CartController extends Controller
         $this->removeIfAvailable($id);
 
         if($getDetails['type']=='flat'){
+
             $price = ( $getDetails['price'] * $getDetails['plan_duration']) ;
         }elseif($getDetails['type']=='percentage'){
+
             $price = $getDetails['price'] * $getDetails['plan_duration'];
         }
         
         $cart = \Cart::add(['id' => $id, 'name' => $getDetails['title'], 'qty' => 1, 'price' => $price ,'weight' => 550,'options' => $data ]);
 
         Cart::setGlobalTax(0);
+        //set tax to 0 globally
 
         if( $getDetails['type'] == 'percentage' && $getDetails['discount'] != 0 ){
 
             Cart::setDiscount($cart->rowId, $getDetails['discount']);
-
         }elseif( $getDetails['type'] == 'flat' && $getDetails['discount'] != 0 ){
+
             $percentage = $getDetails['discount'] / $getDetails['price'] ;
             $percentage = $percentage * 100 ;
 
@@ -122,12 +125,14 @@ class CartController extends Controller
 
         $msg = "Product has been successfully added to the Cart.";
         return redirect()->route('cart')->with('success',$msg);
+
     }
 
 
     public function deletecart($rowId){
 
         Cart::remove($rowId);
+
          return redirect()->back()->with('success','Product has been successfully Removed to the Cart.');
     }
 
@@ -138,6 +143,7 @@ class CartController extends Controller
         $country = Country::all();
         return view('checkout',compact('country'));
     }
+
 
     public function saveAppliedCodes($data = array()){
         
@@ -201,7 +207,8 @@ class CartController extends Controller
                 $item['taxrate'] = $cart->taxRate;
                 $item['discountRate'] = $cart->discountRate;
                 $item['total_price'] = $tax_price + $cart->price - $dicount_price ;
-                $item['duration'] = $cart->options->duration;
+//                $item['duration'] = $cart->options->duration;
+                $item['duration'] = $cart->options['plan_duration'];
                 $item['expired_at'] = Carbon::now()->addMonth($cart->options->duration);
                 OrderItems::create($item);
             }
@@ -282,8 +289,9 @@ class CartController extends Controller
         }
     }
 
+
     public function razorpaySuccess(Request $request){
-        //dd($request->all());
+
         if(isset($request->razorpay_payment_id)){
             $order = Order::where('order_id',$request->razorpay_order_id)->first();
             $data= [
@@ -302,6 +310,7 @@ class CartController extends Controller
     }
 
     public function paypalPaymentGetToken($data){
+
         $ch = curl_init();
         
         curl_setopt($ch, CURLOPT_URL, env('PAYPAL_API'));
@@ -316,10 +325,10 @@ class CartController extends Controller
         return $result;
     }
 
+
     public function cartDestroyed(){
 
         $countCart = array();
-
         foreach(Cart::content() as $cart){
             $countCart[] = $cart;
         }
@@ -327,7 +336,6 @@ class CartController extends Controller
         if(count($countCart)!=0){
             $this->cartDestroyed();
         }
-
     }
 
 }
